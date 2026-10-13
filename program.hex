@@ -1,0 +1,25 @@
+// program.hex - machine code for program.s (one 32-bit instruction per line)
+00500093  // 0x00: addi x1,  x0, 5        # x1 = 0 + 5 = 5
+00300113  // 0x04: addi x2,  x0, 3        # x2 = 0 + 3 = 3
+002081b3  // 0x08: add  x3,  x1, x2       # x3 = 5 + 3 = 8
+40208233  // 0x0C: sub  x4,  x1, x2       # x4 = 5 - 3 = 2
+0020f2b3  // 0x10: and  x5,  x1, x2       # x5 = 0101 & 0011 = 0001 = 1
+0020e333  // 0x14: or   x6,  x1, x2       # x6 = 0101 | 0011 = 0111 = 7
+401103b3  // 0x18: sub  x7,  x2, x1       # x7 = 3 - 5 = -2 (0xFFFFFFFE), tests negative results
+01000413  // 0x1C: addi x8,  x0, 16       # x8 = 16, used as a base address for memory
+00342023  // 0x20: sw   x3,  0(x8)        # mem[16] = x3 = 8
+00742223  // 0x24: sw   x7,  4(x8)        # mem[20] = x7 = -2
+00042483  // 0x28: lw   x9,  0(x8)        # x9 = mem[16] = 8
+00442503  // 0x2C: lw   x10, 4(x8)        # x10 = mem[20] = -2
+00348463  // 0x30: beq  x9,  x3, skip     # 8 == 8, so branch IS taken -> jump to 0x38
+06300593  // 0x34: addi x11, x0, 99       # SKIPPED by the branch, so x11 must stay 0
+00208463  // 0x38: beq  x1,  x2, wrong    # 5 != 3, so branch NOT taken -> fall through
+02a00613  // 0x3C: addi x12, x0, 42       # x12 = 42 (runs only if beq above was not taken)
+03700013  // 0x40: addi x0,  x0, 55       # try to write x0 -> ignored, x0 stays 0
+007606b3  // 0x44: add  x13, x12, x7      # x13 = 42 + (-2) = 40
+fed42c23  // 0x48: sw   x13, -8(x8)       # mem[16 - 8] = mem[8] = 40 (negative offset)
+00300793  // 0x4C: addi x15, x0, 3        # x15 = 3, loop limit
+00170713  // 0x50: addi x14, x14, 1       # x14 = x14 + 1 (loop counter)
+00f70463  // 0x54: beq  x14, x15, done    # if counter == 3, leave the loop (forward branch)
+fe000ce3  // 0x58: beq  x0,  x0, loop     # always taken -> jump back to 0x50 (backward branch)
+00000063  // 0x5C: beq  x0,  x0, done     # infinite loop = "halt" (PC stays at 0x5C)

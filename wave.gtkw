@@ -1,0 +1,71 @@
+[*]
+[*] wave.gtkw - GTKWave layout for the single-cycle RISC-V CPU
+[*] Open with:  gtkwave riscv.vcd wave.gtkw
+[*] Display formats: @22 = hex, @24 = decimal, @420 = signed decimal, @28 = binary
+[*]
+[dumpfile] "riscv.vcd"
+[savefile] "wave.gtkw"
+[timestart] 0
+[size] 1400 850
+[pos] -1 -1
+*-15.500000 0 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_riscv.
+[treeopen] tb_riscv.dut.
+[sst_width] 220
+[signals_width] 220
+[sst_expanded] 1
+[sst_vpaned_height] 250
+@200
+-Clock / Reset
+@28
+tb_riscv.clk
+tb_riscv.reset
+@200
+-Fetch
+@22
+tb_riscv.dut.pc[31:0]
+tb_riscv.dut.instr[31:0]
+tb_riscv.dut.pc_next[31:0]
+@200
+-Decode (instruction fields)
+@28
+tb_riscv.dut.opcode[6:0]
+@24
+tb_riscv.dut.rs1[4:0]
+tb_riscv.dut.rs2[4:0]
+tb_riscv.dut.rd[4:0]
+@420
+tb_riscv.dut.imm[31:0]
+@200
+-Control signals
+@28
+tb_riscv.dut.reg_write
+tb_riscv.dut.alu_src
+tb_riscv.dut.mem_read
+tb_riscv.dut.mem_write
+tb_riscv.dut.mem_to_reg
+tb_riscv.dut.branch
+tb_riscv.dut.alu_op[1:0]
+tb_riscv.dut.alu_ctrl[3:0]
+@200
+-ALU (A = rs1_data, B = alu_b)
+@420
+tb_riscv.dut.rs1_data[31:0]
+tb_riscv.dut.rs2_data[31:0]
+tb_riscv.dut.alu_b[31:0]
+tb_riscv.dut.alu_result[31:0]
+@28
+tb_riscv.dut.alu_zero
+@200
+-Memory / Write-back
+@420
+tb_riscv.dut.mem_rdata[31:0]
+tb_riscv.dut.write_data[31:0]
+@200
+-Branch
+@28
+tb_riscv.dut.branch_taken
+@22
+tb_riscv.dut.branch_target[31:0]
+[pattern_trace] 1
+[pattern_trace] 0
