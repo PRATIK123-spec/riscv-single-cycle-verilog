@@ -160,6 +160,10 @@ SUMMARY: 20 passed, 0 failed, 20 total
 
 *Reset followed by the first 11 instructions: PC, instruction word, decoded assembly, control signals, and ALU result for each clock cycle.*
 
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Author
 
 Protik Dey
