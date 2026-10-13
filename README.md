@@ -154,6 +154,12 @@ SUMMARY: 20 passed, 0 failed, 20 total
 *** ALL TESTS PASSED ***
 ```
 
+## Simulation Waveform
+
+![RISC-V simulation waveform](waveform.png)
+
+*Reset followed by the first 11 instructions: PC, instruction word, decoded assembly, control signals, and ALU result for each clock cycle.*
+
 ## Author
 
 Protik Dey
